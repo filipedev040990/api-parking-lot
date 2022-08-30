@@ -1,0 +1,14 @@
+Entity
+Parkin Lot
+    code
+    capacity
+    openHour
+    closeHour
+ParkedCar
+    code
+    plate
+    date
+Use Cases
+    EnterParkingLot
+    GettingParkingLote
+    LeaveParkingLot
