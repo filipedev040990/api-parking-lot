@@ -5,5 +5,6 @@ import { route } from '../../routes/routes'
 
 const app = express()
 
+app.use(express.urlencoded({ extended: true }))
 app.use(route)
 app.listen(3000, () => console.log('Server running ...'))
