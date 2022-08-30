@@ -1,18 +1,14 @@
 import { EnterParkingLotUseCase } from '../core/usecases/enter-parking-lot-usecase'
 import { ParkingLotRepositoryInMemory } from '../infra/repositories/parking-lot-repository-in-memory'
-import { ParkingLotRepositoryPg } from '../infra/repositories/parking-lot-repository-pg'
-
 interface ISut {
   sut: EnterParkingLotUseCase
-  parkingLotRepositoryInMemory: ParkingLotRepositoryInMemory,
-  parkingLotRepositoryPg: ParkingLotRepositoryPg
+  parkingLotRepositoryInMemory: ParkingLotRepositoryInMemory
 }
 
 const makeSut = (): ISut => {
   const parkingLotRepositoryInMemory = new ParkingLotRepositoryInMemory()
-  const parkingLotRepositoryPg = new ParkingLotRepositoryPg()
   const sut = new EnterParkingLotUseCase(parkingLotRepositoryInMemory)
-  return { sut, parkingLotRepositoryInMemory, parkingLotRepositoryPg }
+  return { sut, parkingLotRepositoryInMemory }
 }
 
 const makeParkingLotData = (): any => ({
@@ -41,10 +37,9 @@ describe('Enter Parking Lot', () => {
     const { sut } = makeSut()
     const parkingLotData = makeParkingLotData()
 
-    for(let i = 0; i <= 5; i++){
+    for(let i = 1; i <= 5; i++){
       await sut.execute(parkingLotData)
     }
-
     const parkingLot = sut.execute(parkingLotData)
     await expect(parkingLot).rejects.toThrowError('The parking lot is full')
   })

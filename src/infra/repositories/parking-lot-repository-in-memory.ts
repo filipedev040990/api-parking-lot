@@ -6,7 +6,7 @@ export class ParkingLotRepositoryInMemory implements ParkingLotRepositoryInterfa
   parkingLots = [
     {
       code: 'shopping',
-      capacity: 30,
+      capacity: 5,
       open_hour: 8,
       close_hour: 22
     }

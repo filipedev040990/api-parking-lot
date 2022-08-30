@@ -1,18 +1,14 @@
 import { GettingPartingLotUseCase } from '../core/usecases/getting-parking-lot-usecase'
 import { ParkingLotRepositoryInMemory } from '../infra/repositories/parking-lot-repository-in-memory'
-import { ParkingLotRepositoryPg } from '../infra/repositories/parking-lot-repository-pg'
-
 interface ISut {
   sut: GettingPartingLotUseCase
-  parkingLotRepositoryInMemory: ParkingLotRepositoryInMemory,
-  parkingLotRepositoryPg: ParkingLotRepositoryPg
+  parkingLotRepositoryInMemory: ParkingLotRepositoryInMemory
 }
 
 const makeSut = (): ISut => {
   const parkingLotRepositoryInMemory = new ParkingLotRepositoryInMemory()
-  const parkingLotRepositoryPg = new ParkingLotRepositoryPg()
-  const sut = new GettingPartingLotUseCase(parkingLotRepositoryPg)
-  return { sut, parkingLotRepositoryInMemory, parkingLotRepositoryPg }
+  const sut = new GettingPartingLotUseCase(parkingLotRepositoryInMemory)
+  return { sut, parkingLotRepositoryInMemory }
 }
 
 describe('Enter Parking Lot', () => {
